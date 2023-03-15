@@ -1,6 +1,7 @@
 import "./App.css";
 import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import { UserAuthContextProvider } from "./components/UserAuthContext";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import UserPage from "./pages/UserPage";
@@ -10,6 +11,7 @@ import SearchBar from "./components/searchBar";
 
 function App() {
   return (
+    <UserAuthContextProvider>
     <Router>
       <Header />
       <SearchBar />
@@ -21,6 +23,7 @@ function App() {
       </Routes>
       <Footer />
     </Router>
+    </UserAuthContextProvider>
   );
 }
 
