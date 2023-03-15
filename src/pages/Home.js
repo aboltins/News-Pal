@@ -1,11 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import SearchBar from "../components/SearchBar";
+import Weather from "../components/Weather";
 
 const Home = () => {
   return (
     <div>
       Home page
-      <Link to="/login">Login</Link>
+      <SearchBar />
+      <Weather />
     </div>
   );
 };

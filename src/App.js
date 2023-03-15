@@ -8,14 +8,12 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import UserPage from "./pages/UserPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import SearchBar from "./components/searchBar";
 
 function App() {
   return (
     <UserAuthContextProvider>
     <Router>
       <Header />
-      <SearchBar />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route
