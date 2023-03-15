@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import { UserAuthContextProvider } from "./components/UserAuthContext";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import ProtectedRoute from "./components/ProtectedRoute";
 import UserPage from "./pages/UserPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -17,7 +18,14 @@ function App() {
       <SearchBar />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/userpage" element={<UserPage />} />
+        <Route
+          path="/userpage"
+          element={
+            <ProtectedRoute>
+              <UserPage/>
+            </ProtectedRoute>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
