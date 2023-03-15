@@ -1,11 +1,47 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Container, Row, Col, Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import GoogleButton from "react-google-button";
+import { useUserAuth } from "../components/UserAuthContext";
 import styles from "../styles/Login.module.css";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { logIn, googleSignIn } = useUserAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await logIn(email, password);
+      navigate("/userpage");
+    } catch (err) {
+      setError(err.message);
+      console.log(err.message);
+      if (err.message === 'Firebase: Error (auth/invalid-email).') {
+        setError('Please enter a valid email address.');
+      } else if (err.message === 'Firebase: Error (auth/internal-error).') {
+        setError('Please enter a valid password.')
+      } else {
+        setError('You have entered an invalid email or password !');
+      }
+    }
+  };
+
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await googleSignIn();
+      navigate("/userpage");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <section className={styles.display}>
       <Container>
@@ -13,11 +49,13 @@ const Login = () => {
           <Col>
             <div className={styles.box}>
               <h2 className="mb-3 text-center text-capitalize"> Login</h2>
-              <Form>
+              {error && <Alert className="text-center" variant="danger">{error}</Alert>}
+              <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Control
                     type="email"
                     placeholder="Email address"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </Form.Group>
 
@@ -25,6 +63,7 @@ const Login = () => {
                   <Form.Control
                     type="password"
                     placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </Form.Group>
 
@@ -39,6 +78,7 @@ const Login = () => {
                 <GoogleButton
                   className="g-btn"
                   type="dark"
+                  onClick={handleGoogleSignIn}
                 />
               </div>
             </div>
