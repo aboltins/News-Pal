@@ -1,0 +1,21 @@
+.display {
+  background-color: #fafafa;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  height: 100vh;
+}
+
+.box {
+  border: 1px solid #dfdfdf;
+  background-color: #fff;
+  padding: 1.5rem;
+}
+
+.box2 {
+  border: 1px solid #dfdfdf;
+  background-color: #fff;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  text-align: center;
+}
