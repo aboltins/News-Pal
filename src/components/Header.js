@@ -1,12 +1,13 @@
 import React from "react";
 import Weather from "../components/Weather";
 import Clock from "../components/Clock";
+import Logo from "../components/Logo";
 
 const Header = () => {
     return (
         <header>
             <div className="header">
-                <h1>News Pal</h1>
+                <Logo />
                 <Weather />
                 <Clock />
             </div>
