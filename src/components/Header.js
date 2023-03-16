@@ -13,8 +13,8 @@ const Header = () => {
         </div>
         <Clock className={styles.clock}/>
         <div className={styles.login}>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <Link to="/login" className={styles.loginBtn}>Login</Link>
+          <Link to="/signup" className={styles.signupBtn}>Sign Up</Link>
         </div>
       </div>
     </header>
