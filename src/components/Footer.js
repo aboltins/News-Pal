@@ -1,9 +1,10 @@
 import React from "react";
+import styles from "../styles/footer.module.css";
 
 const Footer = () => {
   return (
-    <footer>
-      <p>© 2023 News Pal. All rights reserved.</p>
+    <footer className={styles.footer}>
+      <p className={styles.footerText}>© 2023 News Pal. All rights reserved.</p>
     </footer>
   );
 };
