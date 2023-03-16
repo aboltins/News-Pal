@@ -8,7 +8,6 @@
 
 
 .clock {
-
 width: 180px;
 height: 180px;
 border-radius: 50%;
@@ -25,13 +24,20 @@ box-shadow: inset 6px -6px 9px brown,
                inset -4px 4px 9px lightcoral,
                 inset -4px 4px 9px burlywood,
                  inset 4px -4px 9px plum;
+}
 
-
+.digital {
+    position: absolute;
+    top: 30px;
+    color:rgb(128, 240, 145);
+    width: 29%;
 }
 
 .face {
     position: absolute;
-    background: rgb(18, 217, 71);
+    background-image: url(./images/OIP.jpg);
+    background-size: 155px;
+    /*background: rgb(18, 217, 71);*/
     height: 80%;
     width: 80%;
     top: 10%;

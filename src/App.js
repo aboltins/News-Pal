@@ -9,12 +9,11 @@ import UserPage from "./pages/UserPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-
 function App() {
   return (
     <UserAuthContextProvider>
       <Router>
-        
+       
         <Header />
 
         <Routes>
