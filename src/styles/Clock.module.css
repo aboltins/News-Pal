@@ -13,7 +13,7 @@
     position: relative;
     text-align: center;
     border-radius: 50%;
-    box-shadow: inset 6px -6px 9px brown,
+    box-shadow: inset 6px -6px 9px #a52a2a,
                inset -4px 4px 9px lightcoral,
                inset -4px 4px 9px burlywood,
                inset 4px -4px 9px plum;

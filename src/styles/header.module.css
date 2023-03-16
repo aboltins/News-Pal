@@ -12,6 +12,10 @@
   width: 170px;
 }
 
+.logoImg {
+  width: 150px;
+}
+
 .clock {
   font-size: 1.2rem;
   margin: 0 auto;
@@ -26,11 +30,11 @@
 
 .login a {
   padding: 10px;
-  border: 2px solid #898989;
+  border: 2px solid #a52a2a;
   border-radius: 10px;
   text-decoration: none;
   color: #333;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 5px #a52a2a;
   font-weight: bold;
   text-align: center;
   
