@@ -2,9 +2,13 @@ import React from "react";
 import SearchBar from "../components/searchBar";
 import Weather from "../components/Weather";
 import TopNews from "../components/TopNews";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
+    <>
+    <Header />
     <div className="container">
       <div className="row">
         <div className="col">
@@ -21,6 +25,8 @@ const Home = () => {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

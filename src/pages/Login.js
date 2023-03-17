@@ -5,6 +5,8 @@ import { Button } from "react-bootstrap";
 import GoogleButton from "react-google-button";
 import { useUserAuth } from "../components/UserAuthContext";
 import styles from "../styles/Login.module.css";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -22,12 +24,12 @@ const Login = () => {
     } catch (err) {
       setError(err.message);
       console.log(err.message);
-      if (err.message === 'Firebase: Error (auth/invalid-email).') {
-        setError('Please enter a valid email address.');
-      } else if (err.message === 'Firebase: Error (auth/internal-error).') {
-        setError('Please enter a valid password.')
+      if (err.message === "Firebase: Error (auth/invalid-email).") {
+        setError("Please enter a valid email address.");
+      } else if (err.message === "Firebase: Error (auth/internal-error).") {
+        setError("Please enter a valid password.");
       } else {
-        setError('You have entered an invalid email or password !');
+        setError("You have entered an invalid email or password !");
       }
     }
   };
@@ -43,51 +45,59 @@ const Login = () => {
   };
 
   return (
-    <section className={styles.display}>
-      <Container>
-        <Row className={styles.row}>
-          <Col>
-            <div className={styles.box}>
-              <h2 className="mb-3 text-center text-capitalize"> Login</h2>
-              {error && <Alert className="text-center" variant="danger">{error}</Alert>}
-              <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Control
-                    type="email"
-                    placeholder="Email address"
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </Form.Group>
+    <section className={styles.height}>
+      <Header />
+      <div className={styles.display}>
+        <Container>
+          <Row className={styles.row}>
+            <Col>
+              <div className={styles.box}>
+                <h2 className="mb-3 text-center text-capitalize"> Login</h2>
+                {error && (
+                  <Alert className="text-center" variant="danger">
+                    {error}
+                  </Alert>
+                )}
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Control
+                      type="email"
+                      placeholder="Email address"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </Form.Group>
+                  <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Control
+                      type="password"
+                      placeholder="Password"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </Form.Group>
 
-                <div className="d-grid gap-2">
-                  <Button variant="success" type="Submit">
-                    Log In
-                  </Button>
+                  <div className="d-grid gap-2">
+                    <Button variant="success" type="Submit">
+                      Log In
+                    </Button>
+                  </div>
+                </Form>
+                <hr />
+                <div>
+                  <GoogleButton
+                    className="g-btn"
+                    type="dark"
+                    onClick={handleGoogleSignIn}
+                  />
                 </div>
-              </Form>
-              <hr />
-              <div>
-                <GoogleButton
-                  className="g-btn"
-                  type="dark"
-                  onClick={handleGoogleSignIn}
-                />
               </div>
-            </div>
-            <div className={styles.box2}>
-              Don't have an account? <Link to="/signup">Sign up</Link>
-            </div>
-          </Col>
-        </Row>
-      </Container>
+              <div className={styles.box2}>
+                Don't have an account? <Link to="/signup">Sign up</Link>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+      <Footer />
     </section>
   );
 };
