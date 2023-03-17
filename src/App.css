@@ -1,3 +1,8 @@
+/* Sets a main accent color that can be used everywhere else */
+:root {
+  --main-accent: #a52a2a;
+}
+
 .App {
   text-align: center;
 }
