@@ -1,0 +1,20 @@
+/* imports the app.css so shared styles can be used */
+@import '../App.css';
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+    height: 100%;
+  }
+  
+  input {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0 2px 4px var(--main-accent);
+    width: 100%;
+    max-width: 400px;
+  }

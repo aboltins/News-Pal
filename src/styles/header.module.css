@@ -1,8 +1,11 @@
+/* imports the app.css so shared styles can be used */
+@import '../App.css';
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 8px;
   background-color: #f5f5f5;
 }
 
@@ -13,7 +16,7 @@
 }
 
 .logoImg {
-  width: 150px;
+  max-width: 170px;
 }
 
 .clock {
@@ -30,14 +33,14 @@
 
 .login a {
   padding: 10px;
-  border: 2px solid #a52a2a;
+  border: 2px solid var(--main-accent);
   border-radius: 10px;
   text-decoration: none;
   color: #333;
-  box-shadow: 2px 2px 5px #a52a2a;
+  box-shadow: 2px 2px 5px var(--main-accent);
   font-weight: bold;
   text-align: center;
-  
+
 }
 
 .login a:hover {
@@ -49,7 +52,7 @@
 
 /* Media Queries below */
 
-@media screen and (max-width: 768px) {  
+@media screen and (max-width: 768px) {
   .logo {
     display: flex;
     flex-direction: column;
@@ -58,13 +61,14 @@
   }
 }
 
-@media screen and (max-width: 768px) {  
+@media screen and (max-width: 768px) {
   .login {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100px;
   }
+
   .login a {
     padding: 5px 10px;
     font-size: 0.8rem;
