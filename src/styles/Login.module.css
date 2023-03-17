@@ -19,3 +19,9 @@
   margin-top: 1rem;
   text-align: center;
 }
+
+.row {
+  width: 90vw !important;
+  max-width: 450px !important;
+  margin: auto !important;
+}

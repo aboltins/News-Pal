@@ -13,6 +13,7 @@ function App() {
   return (
     <UserAuthContextProvider>
       <Router>
+       
         <Header />
 
         <Routes>

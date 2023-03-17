@@ -35,7 +35,7 @@ const Signup = () => {
   return (
     <section className={styles.display}>
       <Container>
-        <Row>
+        <Row className={styles.row}>
           <Col>
             <div className={styles.box}>
               <h2 className="mb-3 text-center text-capitalize"> Sign-up</h2>

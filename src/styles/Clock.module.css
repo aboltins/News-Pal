@@ -1,0 +1,92 @@
+  .clock-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .clock {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgb(79, 158, 175);
+    position: relative;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: inset 6px -6px 9px var(--main-accent),
+               inset -4px 4px 9px lightcoral,
+               inset -4px 4px 9px burlywood,
+               inset 4px -4px 9px plum;
+  }
+  
+  .digital {
+    position: absolute;
+    top: 30px;
+    color: rgb(128, 240, 145);
+    width: 29%;
+  }
+  
+  .face {
+    position: absolute;
+    background-image: url(./images/OIP.jpg);
+    background-size: 66px;
+    /* background: rgb(18, 217, 71); */
+    height: 80%;
+    width: 80%;
+    top: 10%;
+    left: 10%;
+    border-radius: 50%;
+    box-shadow: inset -4px -4px 9px wheat,
+               inset -4px 4px 9px grey,
+               inset 10px -10px 9px black,
+               inset -10px 10px 9px var(--main-accent);
+  }
+  
+  .hand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    transform-origin: center top;
+    border-radius: 40%;
+  }
+  
+  .second {
+    height: 60%;
+    width: 2px;
+    background-color: blueviolet;
+    z-index: 5;
+    box-shadow: inset -.5px .5px 1px black,
+               inset -4px 4px 9px lightcoral;
+  
+  }
+  
+  .minute {
+    height: 50%;
+    width: 3px;
+    background-color: aqua;
+    z-index: 4;
+    box-shadow: inset -.5px .5px 1px black,
+                inset -4px 4px 9px rgb(128, 240, 145);
+  }
+  
+  .hour {
+    height: 45%;
+    width: 4px;
+    background-color: black;
+    z-index: 3;
+    box-shadow: inset -.5px .5px 1px black,
+                inset -4px 4px 9px rgb(188, 238, 80);
+  }
+  
+  .center {
+    background-color: var(--main-accent);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+  }
