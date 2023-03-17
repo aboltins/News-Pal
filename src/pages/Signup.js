@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Alert, Button } from "react-bootstrap";
 import { useUserAuth } from "../components/UserAuthContext";
 import styles from "../styles/Login.module.css";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -33,7 +35,9 @@ const Signup = () => {
   };
 
   return (
-    <section className={styles.display}>
+    <section className={styles.height}>
+      <Header />
+      <div className={styles.display}>
       <Container>
         <Row className={styles.row}>
           <Col>
@@ -70,6 +74,8 @@ const Signup = () => {
           </Col>
         </Row>
       </Container>
+      </div>
+      <Footer />
     </section>
   );
 };

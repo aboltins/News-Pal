@@ -1,9 +1,15 @@
+.height {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .display {
   background-color: #fafafa;
   display: flex;
   width: 100%;
+  flex-grow: 1;
   align-items: center;
-  height: 100vh;
 }
 
 .box {
