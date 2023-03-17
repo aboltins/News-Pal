@@ -8,13 +8,11 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import UserPage from "./pages/UserPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Clock from "react-clock";
 
 function App() {
   return (
     <UserAuthContextProvider>
       <Router>
-        <Clock />
         <Header />
 
         <Routes>

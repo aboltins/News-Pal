@@ -1,9 +1,10 @@
 import React from "react";
+import styles from '../styles/Header.module.css';
 
 const Logo = () => {
   return (
     <div>
-      <h1>Logo</h1>
+      <h1 className = {styles.logo}>Logo</h1>
     </div>
   );
 };
