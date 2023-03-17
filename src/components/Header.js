@@ -2,7 +2,7 @@ import React from "react";
 import Clock from "../components/Clock";
 import Logo from "../components/Logo";
 import { Link } from "react-router-dom";
-import styles from "../styles/Header.module.css";
+import styles from "../styles/header.module.css";
 
 const Header = () => {
   return (
