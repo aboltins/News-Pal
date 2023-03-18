@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, ListGroup } from "react-bootstrap";
+import { Card, ListGroup, Col, Row } from "react-bootstrap";
 
 const TopNews = () => {
   const [topNews, setTopNews] = useState([]);
@@ -11,22 +11,24 @@ const TopNews = () => {
     // enter key below for now, until process.env is resolved.
     const apiKey = '';
     // guardian api, up to 20 articles with thumbnail photos
-    const Url = `https://content.guardianapis.com/search?api-key=${apiKey}&show-fields=thumbnail&page-size=20`;
-    
+    const Url = `https://content.guardianapis.com/world?api-key=${apiKey}&show-fields=thumbnail&page-size=20`;    
     fetch(Url)
       .then((response) => response.json())
       .then((data) => setTopNews(data.response.results))
       .catch((error) => console.log(error));
   }, []);
 
+  // slice cuts the array to get a certain number of news stories with images, as it renders 20 but not all of them will have images.
+  const newsWithImages = topNews.filter(news => news.fields && news.fields.thumbnail).slice(0, 12);
+
   return (
     <div>
       <h2>Top News</h2>
-      <ListGroup>
-        {topNews.map((news) => (
-          // this will only show the top news that have an image
-          news.fields && news.fields.thumbnail && (
-            <ListGroup.Item key={news.id}>
+      <Row xs={1} sm={2} md={3} xl={4}>
+        {/* this maps over the newly created newWithImages */}
+        {newsWithImages.map((news) => (
+          <Col key={news.id}>
+            <ListGroup.Item>
               <Card>
                 <Card.Img variant="top" src={news.fields.thumbnail} />
                 <Card.Body>
@@ -36,9 +38,9 @@ const TopNews = () => {
                 </Card.Body>
               </Card>
             </ListGroup.Item>
-          )
+          </Col>
         ))}
-      </ListGroup>
+      </Row>
     </div>
   );
 };
