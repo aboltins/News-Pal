@@ -1,5 +1,5 @@
 import React from "react";
-import logoImg from "../images/nplogo1.png"; // replace with the path to your image
+import logoImg from "../styles/images/nplogo1.png";
 import styles from "../styles/header.module.css";
 
 const Logo = () => {

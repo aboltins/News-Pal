@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, ListGroup, Col, Row } from "react-bootstrap";
+import styles from "../styles/TopNews.module.css";
 
 const TopNews = () => {
   const [topNews, setTopNews] = useState([]);
@@ -22,8 +23,8 @@ const TopNews = () => {
   const newsWithImages = topNews.filter(news => news.fields && news.fields.thumbnail).slice(0, 12);
 
   return (
-    <div>
-      <h2>Top News</h2>
+    <div className={styles.TopNewsContainer}>
+      <h2 className={styles.TopNewsTitle}>Latest Headlines</h2>
       <Row xs={1} sm={2} md={3} xl={4}>
         {/* this maps over the newly created newWithImages */}
         {newsWithImages.map((news) => (
@@ -33,7 +34,8 @@ const TopNews = () => {
                 <Card.Img variant="top" src={news.fields.thumbnail} />
                 <Card.Body>
                   <Card.Title>{news.webTitle}</Card.Title>
-                  <Card.Text>{news.webPublicationDate}</Card.Text>
+                  {/* replaces the T and Z that was given by guardian api on the dates with empty spaces */}
+                  <Card.Text>{news.webPublicationDate.replace('T', ' ').replace('Z', '')}</Card.Text>
                   <Card.Link href={news.webUrl}>Read more on Guardian</Card.Link>
                 </Card.Body>
               </Card>
