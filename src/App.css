@@ -3,6 +3,10 @@
   --main-accent: #a52a2a;
 }
 
+:root {
+  --second-accent: #00ffff;
+}
+
 .App {
   text-align: center;
 }
