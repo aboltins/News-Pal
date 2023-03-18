@@ -20,7 +20,6 @@ const Home = () => {
           <Weather />
         </div>
         <div className="col-md-9">
-          <h2 className="mb-4">TOP News</h2>
           <TopNews />
         </div>
       </div>
