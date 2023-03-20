@@ -17,6 +17,8 @@ const UserPage = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [error, setError] = useState("");
+  const userNewsPref = [];
+
   let photo;
   let name;
   if (user.photoURL === null) {
@@ -37,22 +39,38 @@ const UserPage = () => {
     photoURL: photo,
   });
 
+  function removeItem(arr, value) {
+    var index = arr.indexOf(value);
+    if (index > -1) {
+      arr.splice(index, 1);
+    }
+    return arr;
+  }
+
+  const handleClick = (e) => {
+    if (e.target.checked && userNewsPref.includes(e.target.name) === false) {
+      userNewsPref.push(e.target.name);
+    } else if (
+      e.target.checked === false &&
+      userNewsPref.includes(e.target.name) === true
+    ) {
+      removeItem(userNewsPref, e.target.name);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    if (firstName === '' && lastName === '') {
-      name = user.displayName
-    }
     try {
       console.log("this is a test");
-      if (firstName === '' && lastName === '') {
-        name = user.displayName
-      } else if (firstName === '') {
-        setError('Please enter a first name.')
-        return
-      } else if (lastName === '') {
-        setError('Please enter a last name.')
-        return
+      if (firstName === "" && lastName === "") {
+        name = user.displayName;
+      } else if (firstName === "") {
+        setError("Please enter a first name.");
+        return;
+      } else if (lastName === "") {
+        setError("Please enter a last name.");
+        return;
       } else {
         name = `${firstName} ${lastName}`;
         console.log(name);
@@ -95,7 +113,10 @@ const UserPage = () => {
               marginTop: "1rem",
             }}
           >
-            <h2 className="mb-3 text-center text-capitalize"> Update Profile</h2>
+            <h2 className="mb-3 text-center text-capitalize">
+              {" "}
+              Update Profile
+            </h2>
             {error && (
               <Alert className="text-center" variant="danger">
                 {error}
@@ -125,10 +146,38 @@ const UserPage = () => {
                 </Col>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                   <Form.Label>News Preferences</Form.Label>
-                  <Form.Check type="checkbox" label="World news" />
-                  <Form.Check type="checkbox" label="Politics" />
-                  <Form.Check type="checkbox" label="Sport" />
-                  <Form.Check type="checkbox" label="Environment" />
+                  <Form.Check
+                    type="checkbox"
+                    name="World news"
+                    label="World news"
+                    onClick={(e) => {
+                      handleClick(e);
+                    }}
+                  />
+                  <Form.Check
+                    type="checkbox"
+                    name="Politics"
+                    label="Politics"
+                    onClick={(e) => {
+                      handleClick(e);
+                    }}
+                  />
+                  <Form.Check
+                    type="checkbox"
+                    name="Sport"
+                    label="Sport"
+                    onClick={(e) => {
+                      handleClick(e);
+                    }}
+                  />
+                  <Form.Check
+                    type="checkbox"
+                    name="Environment"
+                    label="Environment"
+                    onClick={(e) => {
+                      handleClick(e);
+                    }}
+                  />
                 </Form.Group>
               </Row>
               <div className="d-grid gap-2">

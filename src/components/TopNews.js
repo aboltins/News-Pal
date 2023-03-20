@@ -10,7 +10,7 @@ const TopNews = () => {
     // console.log(process.env.REACT_APP_API_KEY_GUARDIAN);
 
     // enter key below for now, until process.env is resolved.
-    const apiKey = 'dcb62ce8-dfaf-45c4-956d-301b938ee7c8';
+    const apiKey = '';
     // guardian api, up to 20 articles with thumbnail photos
     const Url = `https://content.guardianapis.com/world?api-key=${apiKey}&show-fields=thumbnail&page-size=20`;    
     fetch(Url)
