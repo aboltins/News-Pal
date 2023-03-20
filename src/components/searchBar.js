@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "../styles/SearchBar.css"
-const API_KEY = 'be2ad656-3350-4f96-b3d1-d5329e39a5ed'
+const API_KEY = ''
 
 const SearchBar = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -51,9 +51,10 @@ const SearchBar = () => {
           {data.map((result) => (
             <div key={result.id}>
               <h2>{result.webTitle}</h2>
-              <p>{result.webUrl}</p>
+              <a href={result.webUrl}>Read here</a>
             </div>
           ))}
+          
         </div>
       )}
     </div>
