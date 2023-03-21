@@ -21,6 +21,7 @@ const SearchBar = () => {
   const handleClear = () => {
     setSearchInput("");
     setData([]);
+    setQuery("");
   };
 
   const fetchApiData = async () => {
@@ -62,7 +63,7 @@ const SearchBar = () => {
         />
         <span className="clear" onClick={handleClear}></span>
       </div>
-      {query !== "" && (
+      {searchResultsWithImages.length > 0 && (
         <div className="search-results-container">
           <h2>Search Results</h2>
           <Row xs={1} sm={2} md={3} xl={4}>
