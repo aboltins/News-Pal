@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Card, ListGroup, Col, Row } from "react-bootstrap";
 import "../styles/SearchBar.css"
 const API_KEY = ''
 
@@ -15,22 +16,32 @@ const SearchBar = () => {
   const handleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
-    setQuery(e.target.value);
   };
 
   const handleClear = () => {
     setSearchInput("");
+    setData([]);
   };
 
   const fetchApiData = async () => {
-    const response = await fetch(`https://content.guardianapis.com/search?q=${query}&api-key=${API_KEY}`);
-    const data = await response.json();
-    setData(data.response.results);
+    if (query !== "") {
+      const response = await fetch(
+        `https://content.guardianapis.com/search?q=${query}&api-key=${API_KEY}&show-fields=thumbnail&page-size=8`
+      );
+      const data = await response.json();
+      setData(data.response.results);
+    }
   };
-  
+
   useEffect(() => {
-    fetchApiData();
-  }, [query, fetchApiData]);
+    if (query !== "") {
+      fetchApiData();
+    }
+  }, [query]);
+
+  const searchResultsWithImages = data.filter(
+    (result) => result.fields && result.fields.thumbnail
+  );
 
   return (
     <div className="container">
@@ -42,19 +53,34 @@ const SearchBar = () => {
           type="search"
           placeholder="Search here"
           onChange={handleChange}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              setQuery(searchInput);
+            }
+          }}
           value={searchInput}
         />
         <span className="clear" onClick={handleClear}></span>
       </div>
       {query !== "" && (
-        <div>
-          {data.map((result) => (
-            <div key={result.id}>
-              <h2>{result.webTitle}</h2>
-              <a href={result.webUrl}>Read here</a>
-            </div>
-          ))}
-          
+        <div className="search-results-container">
+          <h2>Search Results</h2>
+          <Row xs={1} sm={2} md={3} xl={4}>
+            {searchResultsWithImages.map((result) => (
+              <Col key={result.id}>
+                <ListGroup.Item>
+                  <Card>
+                    <Card.Img variant="top" src={result.fields.thumbnail} />
+                    <Card.Body>
+                      <Card.Title>{result.webTitle}</Card.Title>
+                      <Card.Text>{result.webPublicationDate.replace('T', ' ').replace('Z', '')}</Card.Text>
+                      <Card.Link href={result.webUrl}>Read more on Guardian</Card.Link>
+                    </Card.Body>
+                  </Card>
+                </ListGroup.Item>
+              </Col>
+            ))}
+          </Row>
         </div>
       )}
     </div>
