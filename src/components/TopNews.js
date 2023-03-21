@@ -12,7 +12,7 @@ const TopNews = () => {
     // enter key below for now, until process.env is resolved.
     const apiKey = '';
     // guardian api, up to 20 articles with thumbnail photos
-    const Url = `https://content.guardianapis.com/football?api-key=${apiKey}&show-fields=thumbnail&page-size=20`;    
+    const Url = `https://content.guardianapis.com/world?api-key=${apiKey}&show-fields=thumbnail&page-size=20`;    
     fetch(Url)
       .then((response) => response.json())
       .then((data) => setTopNews(data.response.results))
