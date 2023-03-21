@@ -10,24 +10,21 @@
     transition: 0.5s;
     box-shadow: 0 0 20px var(--main-accent);
     overflow: hidden;
-    margin-top: 10px;
-    
+    margin: 60px auto 0;
 }
 
-
 .active {
-width: 360px;
+    width: 360px;
 }
 
 .search .input {
     position: relative;
-    
     width: 300%;
     height: 60%;
-   left: 60px;
+    left: 60px;
     display: flex;
     justify-content: center;
-   align-items: center;
+    align-items: center;
 }
 
 .search .input {
@@ -42,18 +39,18 @@ width: 360px;
 }
 
 .search .icon {
-position: absolute;
-top: 0;
-left: 0;
-width: 60px;
-height: 60px;
-background: white;
-border-radius: 60px;
-display: flex;
-justify-content: center;
-align-items: center;
-z-index: 1000;
-cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
 }
 
 .search .icon::before {
@@ -63,7 +60,7 @@ cursor: pointer;
     height: 15px;
     border: 3px solid #3ca3f2;
     border-radius: 50%;
-    transform: translate(-4px,-4px);
+    transform: translate(-4px, -4px);
 }
 
 .search .icon::after {
@@ -71,8 +68,8 @@ cursor: pointer;
     position: absolute;
     width: 3px;
     height: 12px;
-background: blueviolet;
-transform: translate(6px,6px) rotate(315deg);
+    background: blueviolet;
+    transform: translate(6px, 6px) rotate(315deg);
 
 }
 
@@ -83,7 +80,7 @@ transform: translate(6px,6px) rotate(315deg);
     width: 15px;
     height: 15px;
     right: 15px;
-   
+
     cursor: pointer;
     display: flex;
     justify-content: center;
