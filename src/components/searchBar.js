@@ -15,7 +15,6 @@ const SearchBar = () => {
   const handleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
-    setQuery(e.target.value);
   };
 
   const handleClear = () => {
@@ -23,14 +22,20 @@ const SearchBar = () => {
   };
 
   const fetchApiData = async () => {
-    const response = await fetch(`https://content.guardianapis.com/search?q=${query}&api-key=${API_KEY}`);
-    const data = await response.json();
-    setData(data.response.results);
+    if (query !== "") {
+      const response = await fetch(
+        `https://content.guardianapis.com/search?q=${query}&api-key=${API_KEY}`
+      );
+      const data = await response.json();
+      setData(data.response.results);
+    }
   };
-  
+
   useEffect(() => {
-    fetchApiData();
-  }, [query, fetchApiData]);
+    if (query !== "") {
+      fetchApiData();
+    }
+  }, [query]);
 
   return (
     <div className="container">
@@ -42,6 +47,11 @@ const SearchBar = () => {
           type="search"
           placeholder="Search here"
           onChange={handleChange}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              setQuery(searchInput);
+            }
+          }}
           value={searchInput}
         />
         <span className="clear" onClick={handleClear}></span>
@@ -54,7 +64,7 @@ const SearchBar = () => {
               <a href={result.webUrl}>Read here</a>
             </div>
           ))}
-          
+
         </div>
       )}
     </div>
