@@ -4,6 +4,7 @@ import Weather from "../components/Weather";
 import TopNews from "../components/TopNews";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Nasa from "../components/Nasa";
 
 const Home = () => {
   return (
@@ -18,6 +19,8 @@ const Home = () => {
       <div className="row">
         <div className="col-xl-3">
           <Weather />
+          <hr></hr>
+          <Nasa />
         </div>
         <div className="col-xl-9">
           <TopNews />

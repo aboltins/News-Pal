@@ -1,0 +1,29 @@
+h1 {
+    color: rgb(123, 29, 29);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Recursive', sans-serif;
+    padding: 10px;
+ 
+}
+
+.small {
+    max-width: 300px;
+    border-radius: 20px;
+    padding: 10px;
+  }
+
+
+
+/* Media Queries */
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .small-image {
+        max-width: 280px;
+       
+      }
+
+
+}
+
+
