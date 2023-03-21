@@ -12,7 +12,7 @@ import {
   Button,
 } from "react-bootstrap";
 
-const UserPage = () => {
+const UserProfile = () => {
   const { user } = useUserAuth();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -194,4 +194,4 @@ const UserPage = () => {
   );
 };
 
-export default UserPage;
+export default UserProfile;

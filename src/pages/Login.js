@@ -4,7 +4,7 @@ import { Container, Row, Col, Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import GoogleButton from "react-google-button";
 import { useUserAuth } from "../components/UserAuthContext";
-import styles from "../styles/Login.module.css";
+import styles from "../styles/Form.module.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
