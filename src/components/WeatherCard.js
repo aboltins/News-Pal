@@ -25,25 +25,25 @@ const WeatherCard = ({ weatherData }) => (
         {moment().format("dddd")}, <span>{moment().format("LL")}</span>
       </p>
       <img
-       
+
         src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
         alt={weatherData.weather[0].main}
       />
     </div>
 
     <div className={styles.flex}>
-      <p className={styles.temp}>Temperature: {weatherData.main.temp} &deg;C</p>
-      <p className={styles.temp}>{weatherData.weather[0].description.toUpperCase()}</p>
+      <p className={`${styles.temp} ${styles.leftCol}`}>Temperature: {weatherData.main.temp} &deg;C</p>
+      <p className={styles.temp}>{weatherData.weather[0].description.charAt(0).toUpperCase() + weatherData.weather[0].description.slice(1).toLowerCase()}</p>
     </div>
 
     <div className={styles.flex}>
-    <p className={styles.temp}>Feels like: {weatherData.main.feels_like} &deg;C</p>
-      
+      <p className={`${styles.temp} ${styles.leftCol}`}>Feels like: {weatherData.main.feels_like} &deg;C</p>
+
       <p className={styles.temp}>Humidity: {weatherData.main.humidity} %</p>
     </div>
 
     <div className={styles.flex}>
-      <p className={styles.temp}>
+      <p className={`${styles.temp} ${styles.leftCol}`}>
         Sunrise:{" "}
         {new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString("en-UK")}
       </p>

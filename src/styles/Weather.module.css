@@ -1,67 +1,117 @@
-.main{
-    width: 350px;
-   /* border-radius: 20px;*/
+.main {
+    max-width: 350px;
+    width: 100%;
+    border-radius: 20px;
     background-color: #004173;
-    margin-top: 50px;
+    margin-top: 122px;
 }
 
-.top{
-    height: 50px;
+/* fixes the left columns 18px margin */
+.leftCol {
+    margin: 0px;
+}
+
+.top {
+    height: 55px;
     background-color: #a18b9f;
     color: white;
     padding: 10px;
-   /* border-radius: 20px 20px 0 0;*/
+    border-radius: 20px 20px 0 0;
     font-family: 'Recursive', sans-serif;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 0px;
 }
 
-.header{
-    
+.header {
     color: white;
     margin: 10px 0px 0px 10px;
     font-size: 25px;
     font-weight: 600;
     font-family: 'Recursive', sans-serif;
-    
 }
 
-.day{
-    padding: 15px;
+.day {
+    padding: 5px;
     color: white;
     font-family: 'Recursive', sans-serif;
     font-size: 24px;
-   
+    padding-top: 30px;
+    padding-bottom: 0px;
 }
 
-.temp{
-    padding: 15px;
+.temp {
+    padding: 19px;
+    padding-top: 0px;
     color: white;
     font-family: 'Recursive', sans-serif;
     font-size: 18px;
 }
 
-.flex{
+.flex {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-/*.sun{
-    padding: 15px;
-    color: white;
-    font-family: 'Recursive', sans-serif;
-    font-size: 16px;
-}*/
-
-.description{
-    padding: 15px;
+.description {
+    padding: 25px;
     color: white;
     font-family: 'Recursive', sans-serif;
     font-size: 24px;
-    
 }
 
-.button{
+.button {
     width: 35px;
     height: 35px;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 1199px) {
+    .main {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        max-width: 100%;
+        width: 100%;
+        border-radius: 0;
+        margin-top: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 20px;
+    }
+
+    .top {
+        border-radius: 20px!important;
+    }
+
+    .button {
+        width: 35px;
+        height: 35px;
+        margin-left: 10px!important;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .main {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .day {
+        padding: 0px;
+        margin-bottom: 0px;
+        margin-right: 0px;
+    }
+
+    .top {
+        margin-right: 190px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .top {
+        border-radius: 0px 0px 20px 20px!important;
+    }
 }
