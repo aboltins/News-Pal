@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { useUserAuth } from "../components/UserAuthContext";
+import { updateProfile } from "firebase/auth";
 import db from "../config/Firebase";
 import { v4 as uuidv4 } from "uuid";
 import { doc, setDoc, collection, serverTimestamp } from "firebase/firestore";
@@ -14,6 +15,10 @@ export default function UserFirstTime() {
   const { user } = useUserAuth();
   const colletionRef = collection(db, "User_News_Prefrences");
   const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [error, setError] = useState("");
+  let name;
 
   function removeItem(arr, value) {
     var index = arr.indexOf(value);
@@ -41,7 +46,24 @@ export default function UserFirstTime() {
     const ownerEmail = user ? user.email : "unknown";
     let userPref = tempUserPref;
 
+    if (firstName === "" && lastName === "") {
+      setError("Please enter a name.");
+      return;
+    } else if (firstName === "") {
+      setError("Please enter a first name.");
+      return;
+    } else if (lastName === "") {
+      setError("Please enter a last name.");
+      return;
+    } else if (userPref.length === 0) {
+      setError("Please choose atleast one preference.");
+      return;
+    } else {
+      name = `${firstName} ${lastName}`;
+    }
+
     const newEntry = {
+      name: name,
       userPref: userPref,
       id: uuidv4(),
       owner,
@@ -53,7 +75,15 @@ export default function UserFirstTime() {
     try {
       const userNewsRef = doc(colletionRef, newEntry.id);
       await setDoc(userNewsRef, newEntry);
-      navigate("/userprofile");
+      updateProfile(user, {
+        displayName: name,
+      })
+        .then(() => {
+          navigate("/userprofile");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } catch (error) {
       console.error(error);
     }
@@ -69,50 +99,139 @@ export default function UserFirstTime() {
               <div className={styles.box}>
                 <h2 className="mb-3 text-center text-capitalize">
                   {" "}
-                  News Preferences
+                  Create Profile
                 </h2>
+                {error && (
+                  <Alert className="text-center" variant="danger">
+                    {error}
+                  </Alert>
+                )}
                 <Form>
-                  <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Label>News Preferences</Form.Label>
-                    <Form.Check
-                      type="checkbox"
-                      name="World news"
-                      label="World news"
-                      onClick={(e) => {
-                        handleClick(e);
-                      }}
-                    />
-                    <Form.Check
-                      type="checkbox"
-                      name="Politics"
-                      label="Politics"
-                      onClick={(e) => {
-                        handleClick(e);
-                      }}
-                    />
-                    <Form.Check
-                      type="checkbox"
-                      name="Sport"
-                      label="Sport"
-                      onClick={(e) => {
-                        handleClick(e);
-                      }}
-                    />
-                    <Form.Check
-                      type="checkbox"
-                      name="Environment"
-                      label="Environment"
-                      onClick={(e) => {
-                        handleClick(e);
-                      }}
-                    />
-                  </Form.Group>
-
-                  <div className="d-grid gap-2">
-                    <Button variant="success" onClick={() => addSchool()}>
-                      Submit preferences
-                    </Button>
-                  </div>
+                  <Row>
+                    <Col>
+                      <Form.Group className="mb-3" controlId="formFirstName">
+                        <Form.Label>First Name</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Enter first name"
+                          onChange={(e) => setFirstName(e.target.value)}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col>
+                      <Form.Group className="mb-3" controlId="formFirstName">
+                        <Form.Label>Last Name</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Enter last name"
+                          onChange={(e) => setLastName(e.target.value)}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <h4 className="mb-3 text-center text-capitalize">
+                      {" "}
+                      News Preferences
+                    </h4>
+                    <Col>
+                      <Form.Group
+                        className="mb-3"
+                        controlId="formBasicCheckbox"
+                      >
+                        <Form.Check
+                          type="checkbox"
+                          name="World news"
+                          label="World news"
+                          onClick={(e) => {
+                            handleClick(e);
+                          }}
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          name="Politics"
+                          label="Politics"
+                          onClick={(e) => {
+                            handleClick(e);
+                          }}
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          name="Sport"
+                          label="Sport"
+                          onClick={(e) => {
+                            handleClick(e);
+                          }}
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          name="Environment"
+                          label="Environment"
+                          onClick={(e) => {
+                            handleClick(e);
+                          }}
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          name="Option 5"
+                          label="Option 5"
+                          onClick={(e) => {
+                            handleClick(e);
+                          }}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col>
+                      <Form.Group
+                        className="mb-3"
+                        controlId="formBasicCheckbox"
+                      >
+                        <Form.Check
+                          type="checkbox"
+                          name="Food"
+                          label="Food"
+                          onClick={(e) => {
+                            handleClick(e);
+                          }}
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          name="Option 7"
+                          label="Option 7"
+                          onClick={(e) => {
+                            handleClick(e);
+                          }}
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          name="Option 8"
+                          label="Option 8"
+                          onClick={(e) => {
+                            handleClick(e);
+                          }}
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          name="Option 9"
+                          label="Option 9"
+                          onClick={(e) => {
+                            handleClick(e);
+                          }}
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          name="Option 10"
+                          label="Option 10"
+                          onClick={(e) => {
+                            handleClick(e);
+                          }}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <div className="d-grid gap-2">
+                      <Button variant="success" onClick={() => addSchool()}>
+                        Submit profile
+                      </Button>
+                    </div>
+                  </Row>
                 </Form>
               </div>
             </Col>

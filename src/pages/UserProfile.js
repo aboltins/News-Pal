@@ -11,7 +11,15 @@ import {
   Alert,
   Button,
 } from "react-bootstrap";
-import { doc, onSnapshot, updateDoc, collection, serverTimestamp, query, where} from 'firebase/firestore';
+import {
+  doc,
+  onSnapshot,
+  updateDoc,
+  collection,
+  serverTimestamp,
+  query,
+  where,
+} from "firebase/firestore";
 import db from "../config/Firebase";
 
 const UserProfile = () => {
@@ -94,26 +102,26 @@ const UserProfile = () => {
       console.log(err.message);
     }
   };
-  
+
   // REALTIME GET FUNCTION
   useEffect(() => {
-      const id = user ? user.uid : "unknown";
-      console.log(id);
-      const q = query(colletionRef, where("owner", "==", id));
-      const unsub = onSnapshot(q, (querySnapshot) => {
-        const items = [];
-        querySnapshot.forEach((doc) => {
-          items.push(doc.data());
-        });
-        setPref(items)
+    const id = user ? user.uid : "unknown";
+    console.log(id);
+    const q = query(colletionRef, where("owner", "==", id));
+    const unsub = onSnapshot(q, (querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        items.push(doc.data());
       });
-      return () => {
-        unsub();
-      };
+      setPref(items);
+    });
+    return () => {
+      unsub();
+    };
   }, []);
   let test = [];
   if (pref.length > 0) {
-    test = pref[0].userPref
+    test = pref[0].userPref;
     console.log(test);
   }
 
@@ -130,7 +138,9 @@ const UserProfile = () => {
             Hello Welcome {name}
             <ul>
               News Preferences:
-            {test.map(d => (<li key={d}>{d}</li>))}
+              {test.map((d) => (
+                <li key={d}>{d}</li>
+              ))}
             </ul>
             <br />
           </Card>
@@ -143,7 +153,7 @@ const UserProfile = () => {
               marginTop: "1rem",
             }}
           >
-<h2 className="mb-3 text-center text-capitalize">
+            <h2 className="mb-3 text-center text-capitalize">
               {" "}
               Update Profile
             </h2>
@@ -174,41 +184,98 @@ const UserProfile = () => {
                     />
                   </Form.Group>
                 </Col>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                  <Form.Label>News Preferences</Form.Label>
-                  <Form.Check
-                    type="checkbox"
-                    name="World news"
-                    label="World news"
-                    onClick={(e) => {
-                      handleClick(e);
-                    }}
-                  />
-                  <Form.Check
-                    type="checkbox"
-                    name="Politics"
-                    label="Politics"
-                    onClick={(e) => {
-                      handleClick(e);
-                    }}
-                  />
-                  <Form.Check
-                    type="checkbox"
-                    name="Sport"
-                    label="Sport"
-                    onClick={(e) => {
-                      handleClick(e);
-                    }}
-                  />
-                  <Form.Check
-                    type="checkbox"
-                    name="Environment"
-                    label="Environment"
-                    onClick={(e) => {
-                      handleClick(e);
-                    }}
-                  />
-                </Form.Group>
+                <h4 className="mb-3 text-center text-capitalize">
+                  {" "}
+                  News Preferences
+                </h4>
+                <Col>
+                  <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                    <Form.Check
+                      type="checkbox"
+                      name="World news"
+                      label="World news"
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Politics"
+                      label="Politics"
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Sport"
+                      label="Sport"
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Environment"
+                      label="Environment"
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Option 5"
+                      label="Option 5"
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                    <Form.Check
+                      type="checkbox"
+                      name="Food"
+                      label="Food"
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Option 7"
+                      label="Option 7"
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Option 8"
+                      label="Option 8"
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Option 9"
+                      label="Option 9"
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Option 10"
+                      label="Option 10"
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
               </Row>
               <div className="d-grid gap-2">
                 <Button variant="success" type="Submit">
