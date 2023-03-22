@@ -19,12 +19,12 @@
                inset 4px -4px 9px plum;
   }
   
-  .digital {
+  /*.digital {
     position: absolute;
     top: 30px;
     color: rgb(128, 240, 145);
     width: 29%;
-  }
+  }*/
   
   .face {
     position: absolute;
@@ -36,10 +36,10 @@
     top: 10%;
     left: 10%;
     border-radius: 50%;
-    box-shadow: inset -4px -4px 9px wheat,
-               inset -4px 4px 9px grey,
-               inset 10px -10px 9px black,
-               inset -10px 10px 9px var(--main-accent);
+    box-shadow: inset -4px -4px 9px rgb(234, 244, 240),
+               inset -4px 4px 9px rgb(240, 229, 229),
+               inset 10px -10px 9px rgb(155, 166, 243),
+               inset -10px 10px 9px rgb(223, 120, 120);
   }
   
   .hand {
@@ -52,35 +52,36 @@
   }
   
   .second {
-    height: 60%;
+    height: 58%;
     width: 2px;
-    background-color: blueviolet;
+    background-color: rgb(10, 189, 239);
     z-index: 5;
-    box-shadow: inset -.5px .5px 1px black,
-               inset -4px 4px 9px lightcoral;
+    box-shadow: inset -.5px .5px 1px rgb(214, 141, 141),
+               inset -4px 4px 9px rgb(0, 242, 255);
   
   }
   
   .minute {
-    height: 50%;
+    height: 45%;
     width: 3px;
-    background-color: aqua;
+    background-color: rgb(15, 17, 17);
     z-index: 4;
-    box-shadow: inset -.5px .5px 1px black,
-                inset -4px 4px 9px rgb(128, 240, 145);
+    box-shadow: inset -.5px .5px 1px rgb(10, 189, 239),
+                inset -4px 4px 9px rgb(144, 4, 133);
   }
   
   .hour {
-    height: 45%;
+    height: 35%;
     width: 4px;
     background-color: black;
     z-index: 3;
-    box-shadow: inset -.5px .5px 1px black,
-                inset -4px 4px 9px rgb(188, 238, 80);
+    box-shadow: inset -.5px .5px 1px rgb(10, 189, 239),
+                inset -4px 4px 9px rgb(144, 4, 133);
   }
   
   .center {
-    background-color: var(--main-accent);
+    background-color: rgb(87, 12, 81);
+   
     width: 12px;
     height: 12px;
     border-radius: 50%;
