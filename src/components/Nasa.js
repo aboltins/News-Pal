@@ -5,7 +5,7 @@ function Nasa() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=mH6GIRZigeWu9agJQ4QL9uEipZfhzM0yINZxkGPc`);
+      const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY_NASA}`);
       const result = await response.json();
       setData(result);
       console.log(result);
