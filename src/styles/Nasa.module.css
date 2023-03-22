@@ -23,7 +23,10 @@ h1 {
        
       }
 
-
 }
 
-
+@media (max-width: 1200px) {
+  .main {
+    display: none;
+  }
+}
