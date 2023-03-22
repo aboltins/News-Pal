@@ -4,6 +4,9 @@ import db from "../config/Firebase";
 import { onSnapshot, collection, query, where } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { Card, Col, ListGroup, Row } from "react-bootstrap";
+import styles from "../styles/UserNewsFeed.module.css";
+import Header from "../components/Header"; 
+import Footer from "../components/Footer"; 
  // enter key below for now, until process.env is resolved.
  const apiKey = '';
 
@@ -67,6 +70,8 @@ function UserNewsFeed() {
 
   return (
     <>
+      <Header />
+      <Link to="/">Log Out</Link>
       <h1>{name}'s News Feed</h1>
       <ul>
         News Preferences:
@@ -74,7 +79,7 @@ function UserNewsFeed() {
           <li key={d}>{d}</li>
         ))}
       </ul>
-      <div>
+      <div className={styles.UserNewsContainer}>
         <h2>{articles.length > 0 && articles[0].sectionName}</h2>
         <ListGroup>
           <Row xs={1} sm={2} md={3} xl={4}>
@@ -95,7 +100,7 @@ function UserNewsFeed() {
           </Row>
         </ListGroup>
       </div>
-      <Link to="/">Log Out</Link>
+    <Footer />
     </>
   );
 }
