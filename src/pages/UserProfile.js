@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useUserAuth } from "../components/UserAuthContext";
 import { getAuth, updateProfile } from "firebase/auth";
@@ -11,13 +11,17 @@ import {
   Alert,
   Button,
 } from "react-bootstrap";
+import { doc, onSnapshot, updateDoc, collection, serverTimestamp, query, where} from 'firebase/firestore';
+import db from "../config/Firebase";
 
 const UserProfile = () => {
   const { user } = useUserAuth();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [error, setError] = useState("");
-  const userNewsPref = [];
+  const tempUserPref = [];
+  const colletionRef = collection(db, "User_News_Prefrences");
+  const [pref, setPref] = useState([]);
 
   let photo;
   let name;
@@ -48,13 +52,13 @@ const UserProfile = () => {
   }
 
   const handleClick = (e) => {
-    if (e.target.checked && userNewsPref.includes(e.target.name) === false) {
-      userNewsPref.push(e.target.name);
+    if (e.target.checked && tempUserPref.includes(e.target.name) === false) {
+      tempUserPref.push(e.target.name);
     } else if (
       e.target.checked === false &&
-      userNewsPref.includes(e.target.name) === true
+      tempUserPref.includes(e.target.name) === true
     ) {
-      removeItem(userNewsPref, e.target.name);
+      removeItem(tempUserPref, e.target.name);
     }
   };
 
@@ -90,6 +94,28 @@ const UserProfile = () => {
       console.log(err.message);
     }
   };
+  
+  // REALTIME GET FUNCTION
+  useEffect(() => {
+      const id = user ? user.uid : "unknown";
+      console.log(id);
+      const q = query(colletionRef, where("owner", "==", id));
+      const unsub = onSnapshot(q, (querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc) => {
+          items.push(doc.data());
+        });
+        setPref(items)
+      });
+      return () => {
+        unsub();
+      };
+  }, []);
+  let test = [];
+  if (pref.length > 0) {
+    test = pref[0].userPref
+    console.log(test);
+  }
 
   return (
     <>
@@ -102,6 +128,10 @@ const UserProfile = () => {
               alt="User's profile pic"
             ></img>
             Hello Welcome {name}
+            <ul>
+              News Preferences:
+            {test.map(d => (<li key={d}>{d}</li>))}
+            </ul>
             <br />
           </Card>
           <div
@@ -113,7 +143,7 @@ const UserProfile = () => {
               marginTop: "1rem",
             }}
           >
-            <h2 className="mb-3 text-center text-capitalize">
+<h2 className="mb-3 text-center text-capitalize">
               {" "}
               Update Profile
             </h2>
