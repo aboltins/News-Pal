@@ -79,7 +79,7 @@ export default function UserFirstTime() {
         displayName: name,
       })
         .then(() => {
-          navigate("/userprofile");
+          navigate("/usernewsfeed");
         })
         .catch((error) => {
           console.log(error);
