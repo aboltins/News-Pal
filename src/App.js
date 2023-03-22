@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import UserPage from "./pages/UserNav";
 import UserProfile from "./pages/UserProfile";
 import UserPreferences from "./pages/UserPrefernces";
+import UserNewsFeed from "./pages/UserNewsFeed";
 
 function App() {
   return (
@@ -36,6 +37,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <UserPreferences />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/usernewsfeed"
+            element={
+              <ProtectedRoute>
+                <UserNewsFeed />
               </ProtectedRoute>
             }
           />
