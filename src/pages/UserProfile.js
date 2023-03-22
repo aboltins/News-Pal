@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useUserAuth } from "../components/UserAuthContext";
 import { getAuth, updateProfile } from "firebase/auth";
@@ -30,20 +30,14 @@ const UserProfile = () => {
   const tempUserPref = [];
   const colletionRef = collection(db, "User_News_Prefrences");
   const [pref, setPref] = useState([]);
+  const ref = useRef([]);
 
   let photo;
-  let name;
   if (user.photoURL === null) {
     photo =
       "https://static.hudl.com/users/prod/5499830_8e273ea3a64448478f1bb0af5152a4c7.jpg";
   } else {
     photo = user.photoURL;
-  }
-
-  if (user.displayName === null) {
-    name = "NewsPal User";
-  } else {
-    name = user.displayName;
   }
 
   const auth = getAuth();
@@ -62,52 +56,20 @@ const UserProfile = () => {
   const handleClick = (e) => {
     if (e.target.checked && tempUserPref.includes(e.target.name) === false) {
       tempUserPref.push(e.target.name);
+      console.log(tempUserPref);
     } else if (
       e.target.checked === false &&
       tempUserPref.includes(e.target.name) === true
     ) {
       removeItem(tempUserPref, e.target.name);
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      console.log("this is a test");
-      if (firstName === "" && lastName === "") {
-        name = user.displayName;
-      } else if (firstName === "") {
-        setError("Please enter a first name.");
-        return;
-      } else if (lastName === "") {
-        setError("Please enter a last name.");
-        return;
-      } else {
-        name = `${firstName} ${lastName}`;
-        console.log(name);
-      }
-      updateProfile(auth.currentUser, {
-        displayName: name,
-        photoURL: photo,
-      })
-        .then(() => {
-          window.location.reload();
-          console.log("profile updated");
-        })
-        .catch((errorUP) => {
-          console.log(errorUP);
-        });
-    } catch (err) {
-      console.log(err.message);
+      console.log(tempUserPref);
     }
   };
 
   // REALTIME GET FUNCTION
   useEffect(() => {
     const id = user ? user.uid : "unknown";
-    console.log(id);
-    const q = query(colletionRef, where("owner", "==", id));
+    const q = query(colletionRef, where("id", "==", id));
     const unsub = onSnapshot(q, (querySnapshot) => {
       const items = [];
       querySnapshot.forEach((doc) => {
@@ -120,10 +82,58 @@ const UserProfile = () => {
     };
   }, []);
   let test = [];
+  let name;
   if (pref.length > 0) {
     test = pref[0].userPref;
-    console.log(test);
+    name = pref[0].name;
   }
+
+  const editPref = () => {
+    const id = user ? user.uid : "unknown";
+    const test = pref[0].userPref;
+    let userPref = test;
+
+    if (tempUserPref.length > 0) {
+      userPref = tempUserPref;
+      console.log(userPref);
+    }
+
+    setFirstName("");
+    setLastName("");
+    setError("");
+
+    for (let i = 0; i < ref.current.length; i++) {
+      ref.current[i].checked = false;
+    }
+
+    if (firstName === "" && lastName === "") {
+      name = user.displayName;
+    } else if (firstName === "") {
+      setError("Please enter a first name.");
+      return;
+    } else if (lastName === "") {
+      setError("Please enter a last name.");
+      return;
+    } else {
+      name = `${firstName} ${lastName}`;
+    }
+
+    const updatedEntry = {
+      name: name,
+      userPref: userPref,
+      lastUpdate: serverTimestamp(),
+    };
+
+    try {
+      const userNewsRef = doc(colletionRef, id);
+      updateDoc(userNewsRef, updatedEntry);
+      updateProfile(user, {
+        displayName: name,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -162,7 +172,7 @@ const UserProfile = () => {
                 {error}
               </Alert>
             )}
-            <Form onSubmit={handleSubmit}>
+            <Form>
               <Row>
                 <Col>
                   <Form.Group className="mb-3" controlId="formFirstName">
@@ -171,6 +181,7 @@ const UserProfile = () => {
                       type="text"
                       placeholder="Enter first name"
                       onChange={(e) => setFirstName(e.target.value)}
+                      value={firstName}
                     />
                   </Form.Group>
                 </Col>
@@ -181,9 +192,11 @@ const UserProfile = () => {
                       type="text"
                       placeholder="Enter last name"
                       onChange={(e) => setLastName(e.target.value)}
+                      value={lastName}
                     />
                   </Form.Group>
                 </Col>
+
                 <h4 className="mb-3 text-center text-capitalize">
                   {" "}
                   News Preferences
@@ -194,6 +207,9 @@ const UserProfile = () => {
                       type="checkbox"
                       name="World news"
                       label="World news"
+                      ref={(element) => {
+                        ref.current[0] = element;
+                      }}
                       onClick={(e) => {
                         handleClick(e);
                       }}
@@ -202,6 +218,9 @@ const UserProfile = () => {
                       type="checkbox"
                       name="Politics"
                       label="Politics"
+                      ref={(element) => {
+                        ref.current[1] = element;
+                      }}
                       onClick={(e) => {
                         handleClick(e);
                       }}
@@ -210,6 +229,9 @@ const UserProfile = () => {
                       type="checkbox"
                       name="Sport"
                       label="Sport"
+                      ref={(element) => {
+                        ref.current[2] = element;
+                      }}
                       onClick={(e) => {
                         handleClick(e);
                       }}
@@ -218,6 +240,9 @@ const UserProfile = () => {
                       type="checkbox"
                       name="Environment"
                       label="Environment"
+                      ref={(element) => {
+                        ref.current[3] = element;
+                      }}
                       onClick={(e) => {
                         handleClick(e);
                       }}
@@ -226,6 +251,9 @@ const UserProfile = () => {
                       type="checkbox"
                       name="Option 5"
                       label="Option 5"
+                      ref={(element) => {
+                        ref.current[4] = element;
+                      }}
                       onClick={(e) => {
                         handleClick(e);
                       }}
@@ -238,6 +266,9 @@ const UserProfile = () => {
                       type="checkbox"
                       name="Food"
                       label="Food"
+                      ref={(element) => {
+                        ref.current[5] = element;
+                      }}
                       onClick={(e) => {
                         handleClick(e);
                       }}
@@ -246,6 +277,9 @@ const UserProfile = () => {
                       type="checkbox"
                       name="Option 7"
                       label="Option 7"
+                      ref={(element) => {
+                        ref.current[6] = element;
+                      }}
                       onClick={(e) => {
                         handleClick(e);
                       }}
@@ -254,6 +288,9 @@ const UserProfile = () => {
                       type="checkbox"
                       name="Option 8"
                       label="Option 8"
+                      ref={(element) => {
+                        ref.current[7] = element;
+                      }}
                       onClick={(e) => {
                         handleClick(e);
                       }}
@@ -262,6 +299,9 @@ const UserProfile = () => {
                       type="checkbox"
                       name="Option 9"
                       label="Option 9"
+                      ref={(element) => {
+                        ref.current[8] = element;
+                      }}
                       onClick={(e) => {
                         handleClick(e);
                       }}
@@ -270,6 +310,9 @@ const UserProfile = () => {
                       type="checkbox"
                       name="Option 10"
                       label="Option 10"
+                      ref={(element) => {
+                        ref.current[9] = element;
+                      }}
                       onClick={(e) => {
                         handleClick(e);
                       }}
@@ -278,8 +321,8 @@ const UserProfile = () => {
                 </Col>
               </Row>
               <div className="d-grid gap-2">
-                <Button variant="success" type="Submit">
-                  Update Profile
+                <Button variant="success" onClick={() => editPref()}>
+                  Update Preferences
                 </Button>
               </div>
             </Form>

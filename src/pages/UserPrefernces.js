@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { useUserAuth } from "../components/UserAuthContext";
@@ -19,6 +19,7 @@ export default function UserFirstTime() {
   const [lastName, setLastName] = useState("");
   const [error, setError] = useState("");
   let name;
+  const ref = useRef([]);
 
   function removeItem(arr, value) {
     var index = arr.indexOf(value);
@@ -41,10 +42,14 @@ export default function UserFirstTime() {
     }
   };
 
-  async function addSchool() {
-    const owner = user ? user.uid : "unknown";
+  async function addEntry() {
+    const id = user ? user.uid : "unknown";
     const ownerEmail = user ? user.email : "unknown";
     let userPref = tempUserPref;
+
+    for (let i = 0; i < ref.current.length; i++) {
+      ref.current[i].checked = false;
+    }
 
     if (firstName === "" && lastName === "") {
       setError("Please enter a name.");
@@ -65,8 +70,8 @@ export default function UserFirstTime() {
     const newEntry = {
       name: name,
       userPref: userPref,
-      id: uuidv4(),
-      owner,
+      id: id,
+      owner: uuidv4(),
       ownerEmail,
       createdAt: serverTimestamp(),
       lastUpdate: serverTimestamp(),
@@ -133,101 +138,125 @@ export default function UserFirstTime() {
                       News Preferences
                     </h4>
                     <Col>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicCheckbox"
-                      >
-                        <Form.Check
-                          type="checkbox"
-                          name="World news"
-                          label="World news"
-                          onClick={(e) => {
-                            handleClick(e);
-                          }}
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          name="Politics"
-                          label="Politics"
-                          onClick={(e) => {
-                            handleClick(e);
-                          }}
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          name="Sport"
-                          label="Sport"
-                          onClick={(e) => {
-                            handleClick(e);
-                          }}
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          name="Environment"
-                          label="Environment"
-                          onClick={(e) => {
-                            handleClick(e);
-                          }}
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          name="Option 5"
-                          label="Option 5"
-                          onClick={(e) => {
-                            handleClick(e);
-                          }}
-                        />
-                      </Form.Group>
-                    </Col>
-                    <Col>
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicCheckbox"
-                      >
-                        <Form.Check
-                          type="checkbox"
-                          name="Food"
-                          label="Food"
-                          onClick={(e) => {
-                            handleClick(e);
-                          }}
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          name="Option 7"
-                          label="Option 7"
-                          onClick={(e) => {
-                            handleClick(e);
-                          }}
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          name="Option 8"
-                          label="Option 8"
-                          onClick={(e) => {
-                            handleClick(e);
-                          }}
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          name="Option 9"
-                          label="Option 9"
-                          onClick={(e) => {
-                            handleClick(e);
-                          }}
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          name="Option 10"
-                          label="Option 10"
-                          onClick={(e) => {
-                            handleClick(e);
-                          }}
-                        />
-                      </Form.Group>
-                    </Col>
+                  <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                    <Form.Check
+                      type="checkbox"
+                      name="World news"
+                      label="World news"
+                      ref={(element) => {
+                        ref.current[0] = element;
+                      }}
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Politics"
+                      label="Politics"
+                      ref={(element) => {
+                        ref.current[1] = element;
+                      }}
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Sport"
+                      label="Sport"
+                      ref={(element) => {
+                        ref.current[2] = element;
+                      }}
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Environment"
+                      label="Environment"
+                      ref={(element) => {
+                        ref.current[3] = element;
+                      }}
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Option 5"
+                      label="Option 5"
+                      ref={(element) => {
+                        ref.current[4] = element;
+                      }}
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                    <Form.Check
+                      type="checkbox"
+                      name="Food"
+                      label="Food"
+                      ref={(element) => {
+                        ref.current[5] = element;
+                      }}
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Option 7"
+                      label="Option 7"
+                      ref={(element) => {
+                        ref.current[6] = element;
+                      }}
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Option 8"
+                      label="Option 8"
+                      ref={(element) => {
+                        ref.current[7] = element;
+                      }}
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Option 9"
+                      label="Option 9"
+                      ref={(element) => {
+                        ref.current[8] = element;
+                      }}
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                    <Form.Check
+                      type="checkbox"
+                      name="Option 10"
+                      label="Option 10"
+                      ref={(element) => {
+                        ref.current[9] = element;
+                      }}
+                      onClick={(e) => {
+                        handleClick(e);
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
                     <div className="d-grid gap-2">
-                      <Button variant="success" onClick={() => addSchool()}>
+                      <Button variant="success" onClick={() => addEntry()}>
                         Submit profile
                       </Button>
                     </div>
