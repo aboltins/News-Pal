@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, ListGroup, Col, Row } from "react-bootstrap";
 import "../styles/SearchBar.css"
+ // enter key below for now, until process.env is resolved.
 const API_KEY = ''
 
 const SearchBar = () => {

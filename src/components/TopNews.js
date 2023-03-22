@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Card, ListGroup, Col, Row } from "react-bootstrap";
 import styles from "../styles/TopNews.module.css";
+ // enter key below for now, until process.env is resolved.
+ const apiKey = '';
 
 const TopNews = () => {
   const [topNews, setTopNews] = useState([]);
@@ -9,8 +11,7 @@ const TopNews = () => {
     // const apiKey = process.env.REACT_APP_API_KEY_GUARDIAN;
     // console.log(process.env.REACT_APP_API_KEY_GUARDIAN);
 
-    // enter key below for now, until process.env is resolved.
-    const apiKey = '';
+   
     // guardian api, up to 20 articles with thumbnail photos
     const Url = `https://content.guardianapis.com/world?api-key=${apiKey}&show-fields=thumbnail&page-size=20`;    
     fetch(Url)
