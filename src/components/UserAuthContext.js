@@ -12,7 +12,8 @@ import { auth } from "../config/Firebase";
 const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
@@ -31,13 +32,27 @@ export function UserAuthContextProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
       setUser(currentuser);
+      setLoading(false);
     });
-
     return () => {
       unsubscribe();
     };
   }, []);
 
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "80vh",
+        }}
+      >
+        <h1>Loading ...</h1>
+      </div>
+    );
+  }
   return (
     <userAuthContext.Provider
       value={{ user, logIn, signUp, logOut, googleSignIn }}
