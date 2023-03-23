@@ -1,18 +1,108 @@
 .UserNewsContainer {
-    margin-top: 60px;
+    margin-top: 40px;
     margin-bottom: 30px;
-    margin-left: 15px;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
-/* .TopNewsTitle {
+.logOutContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    margin-right: 3vw;
+}
+
+.logOutButton {
+    color: #fff;
+    background-color: #dc3545;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    margin-bottom: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    width: 90px;
+    /* adjust as needed */
+}
+
+.logOutButton:hover {
+    background-color: #c82333;
+}
+
+
+.TitleAndPrefContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+.NewsFeedTitle {
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+
+.NewsPrefTitle {
+    margin-top: 14px;
+}
+
+.NewsPrefList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+li {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #F2F2F2;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+}
+
+/* Hides the h2 title for the first rendered pref. cards, once titles made for all pref. then will undo */
+.articlesHeader {
+    display: none;
 }
 
 /* Media Queries */
 
-/* @media screen and (max-width: 1199px) {
-    .TopNewsContainer {
-        margin-left: 0px;
+@media screen and (max-width: 767px) {
+    .UserNewsContainer {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 20px;
     }
-} */ 
+
+    .logOutButton {
+        border-radius: 4px;
+        font-size: 8px;
+        font-weight: 50;
+        width: 60px;
+        height: 30px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .NewsFeedTitle {
+        font-size: 28px;
+    }
+}
