@@ -36,11 +36,8 @@ const UserProfile = () => {
   const [pref, setPref] = useState([]);
   const ref = useRef([]);
 
-  let photo = user.photoURL;
-  if (user.photoURL === null) {
-    photo = unknowuser;
-  }
-
+  let photo = unknowuser;
+  
   function removeItem(arr, value) {
     var index = arr.indexOf(value);
     if (index > -1) {
