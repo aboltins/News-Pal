@@ -21,7 +21,10 @@ import {
   where,
 } from "firebase/firestore";
 import db from "../config/Firebase";
-import unknowuser from "../styles/images/Unknown-user.jpg"
+import unknowuser from "../styles/images/Unknown-user.jpg";
+import styles from "../styles/UserNewsFeed.module.css";
+import Header from "../components/Header_Prof_Feed";
+import Footer from "../components/Footer";
 
 const UserProfile = () => {
   const { user } = useUserAuth();
@@ -35,7 +38,7 @@ const UserProfile = () => {
 
   let photo = user.photoURL;
   if (user.photoURL === null) {
-    photo = unknowuser
+    photo = unknowuser;
   }
 
   function removeItem(arr, value) {
@@ -129,18 +132,25 @@ const UserProfile = () => {
   };
 
   return (
-    <>
+    <section className={styles.height}>
+    <Header />
+      <div className={styles.logOutContainer}>
+        <Link to="/" className={styles.logOutButton}>
+          Log Out
+        </Link>
+      </div>
+      <div className={styles.display}>
       <Container>
         <Row>
-          <Card className="col-lg-4 col-sm-12">
+          <Card className={styles.card}>
             <img
               src={photo}
-              style={{ width: "96px", height: "96px", marginRight: 'auto', marginLeft: 'auto', borderRadius: '50%'}}
+              className={styles.image}
               alt="User's profile pic"
             ></img>
-            Hello Welcome {name}
-            <ul>
-              News Preferences:
+            <p className={styles.text}>{name}'s Profile</p>
+            <ul className={styles.newsText}>
+              <p>News Preferences:</p>
               {test.map((d) => (
                 <li key={d}>{d}</li>
               ))}
@@ -148,7 +158,11 @@ const UserProfile = () => {
             <br />
           </Card>
           <div
-            className="col-lg-8 col-sm-12"
+            className="col-lg-1"
+          >
+          </div> 
+          <div
+            className="col-lg-7 col-sm-12"
             style={{
               border: "1px solid #dfdfdf",
               backgroundColor: "#fff",
@@ -322,8 +336,9 @@ const UserProfile = () => {
           </div>
         </Row>
       </Container>
-      <Link to="/">Log Out</Link>
-    </>
+      </div>
+      <Footer />
+    </section>
   );
 };
 

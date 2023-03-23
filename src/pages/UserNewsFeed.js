@@ -5,7 +5,7 @@ import { onSnapshot, collection, query, where } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { Card, Col, ListGroup, Row } from "react-bootstrap";
 import styles from "../styles/UserNewsFeed.module.css";
-import Header from "../components/Header";
+import Header from "../components/Header_Prof_Feed";
 import Footer from "../components/Footer";
 // save key in configGuardian.js for now, until process.env is resolved.
 import { apiKeyGuardian } from '../config/configGuardian.js';
