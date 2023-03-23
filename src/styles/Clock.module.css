@@ -19,13 +19,14 @@
                inset 4px -4px 9px plum;
   }
   
-  /*.digital {
+  /* .digital {
     position: absolute;
     top: 30px;
     color: rgb(128, 240, 145);
     width: 29%;
-  }*/
-  
+  }
+   */
+
   .face {
     position: absolute;
     background-image: url(./images/OIP.jpg);
@@ -90,4 +91,17 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 6;
+  }
+
+  @media screen and (max-width: 600px) {
+    .clock {
+      width: 65px;
+      height: 65px;
+    }
+    .face {  
+      background-size: 54px;
+    }
+    .second {
+      height: 50%;
+    }
   }

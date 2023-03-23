@@ -93,6 +93,8 @@
     }
 }
 
+/* Media Queries */
+
 @media screen and (min-width: 992px) and (max-width: 1199px) {
     .main {
         align-items: center;
