@@ -1,1 +1,1 @@
-export const apiKeyGuardian = '';
+export const apiKeyGuardian = 'dcb62ce8-dfaf-45c4-956d-301b938ee7c8';
