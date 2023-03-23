@@ -2,7 +2,7 @@
 
 ## Description
 
-News Pal is a news application is the ultimate tool for busy individuals who want to stay informed while saving time and money. With customizable news feeds, a reputable news source, and a completely free platform, they can stay up-to-date with the world without breaking the bank or sacrificing precious time.  It combines data from The Guardian Open Platform, OpenWeather and Nasa API to provide accurate information.
+News Pal is a news application that is the ultimate tool for busy individuals who want to stay informed while saving time and money. With customizable news feeds, a reputable news source, and a completely free platform, they can stay up-to-date with the world without breaking the bank or sacrificing precious time.  It combines data from The Guardian Open Platform, OpenWeather and Nasa API to provide accurate information.
 
 ### Built with:
 ![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)
@@ -11,6 +11,14 @@ News Pal is a news application is the ultimate tool for busy individuals who wan
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+
+## User Story
+
+```text
+As A busy professional
+I WANT a news application that can provide me with relevant, high-quality news coverage
+SO THAT I have quick access to a relevant news feed as well as latest headlines
+```
 
 ## Table of Contents
 - [Installation](#Installation)
