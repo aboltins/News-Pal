@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# News Pal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+News Pal is a news application is the ultimate tool for busy individuals who want to stay informed while saving time and money. With customizable news feeds, a reputable news source, and a completely free platform, they can stay up-to-date with the world without breaking the bank or sacrificing precious time.  It combines data from The Guardian Open Platform, OpenWeather and Nasa API to provide accurate information.
 
-In the project directory, you can run:
+### Built with:
+![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 
-### `npm start`
+## Table of Contents
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Live Website](#Live-Website)
+- [Questions](#Questions)
+- [Credits](#Credits)
+- [Contributing](#Contributing)
+- [License](#License)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
+### To install the application:
+1. Clone the repo
+```
+git clone https://github.com/aboltins/News-Pal.git
+cd News-Pal
+```
+2. Install NPM packages
+```
+npm install
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Usage
+The application is invoked by entering the following command on your terminal:
+```
+npm start
+```
 
-### `npm test`
+## Live Website
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The live website can be found here: <a href="https://verdant-arithmetic-0320b7.netlify.app/" target="_blank"> News Pal</a>
 
-### `npm run build`
+### The live website looks like this:
+<br/>
+<h2>Home page:</h2>
+<img src="./src/styles/images/News-Pal-Home-Page.png" alt="Image of home page">
+<br/>
+<h2>News Feed page:</h2>
+<img src="./src/styles/images/News-Pal-News-Feed.png" alt="Image of news feed">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Questions
+Contact us if you have any questions!
+<br/>
+Ibrahim:
+- Drop me an email [ibrahim.mohamed1218@gmail.com](mailto:ibrahim.mohamed1218@gmail.com)
+- Check out my GitHub profile [Ibrahim-Mohamed45](https://github.com/Ibrahim-Mohamed45)
+<br/>
+<p>Arturs:</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Drop me an email [arthuraboltins@gmail.com](mailto:arthuraboltins@gmail.com)
+- Check out my GitHub profile [aboltins](https://github.com/aboltins)
+<br/>
+<p>Elena:</p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Drop me an email [coralpeony21@gmail.com](mailto:coralpeony21@gmail.com)
+- Check out my GitHub profile [coralpeony](https://github.com/coralpeony)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Credits
+- <a href="https://open-platform.theguardian.com/" target="_blank"> Guardian API</a>
+- <a href="https://openweathermap.org/api" target="_blank"> Open Weather API</a>
+- <a href="https://api.nasa.gov/" target="_blank"> Nasa API</a>
+- <a href="https://momentjs.com/" target="_blank"> Moment JS</a>
+- <a href="https://www.netlify.com/" target="_blank"> Netlify</a>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Contributing
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 
-## Learn More
+1. Fork the Project
+2. Create your Feature Branch (```git checkout -b feature/AmazingFeature```)
+3. Commit your Changes (```git commit -m 'Add some AmazingFeature'```)
+4. Push to the Branch (```git push origin feature/AmazingFeature```)
+5. Open a Pull Request
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+This project is licensed under the terms of the **MIT License**. See [LICENSE](LICENSE) for more information.
