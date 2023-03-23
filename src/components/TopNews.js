@@ -26,7 +26,7 @@ const TopNews = () => {
   return (
     <div className={styles.TopNewsContainer}>
       <h2 className={styles.TopNewsTitle}>Latest Headlines</h2>
-      <Row xs={1} sm={2} md={3} xl={4}>
+      <Row xs={2} sm={2} md={3} xl={4}>
         {/* this maps over the newly created newWithImages */}
         {newsWithImages.map((news) => (
           <Col key={news.id}>

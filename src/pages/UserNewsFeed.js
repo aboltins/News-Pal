@@ -5,17 +5,17 @@ import { onSnapshot, collection, query, where } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { Card, Col, ListGroup, Row } from "react-bootstrap";
 import styles from "../styles/UserNewsFeed.module.css";
-import Header from "../components/Header"; 
-import Footer from "../components/Footer"; 
- // enter key below for now, until process.env is resolved.
- const apiKey = '';
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+// enter key below for now, until process.env is resolved.
+const apiKey = '';
 
 function UserNewsFeed() {
   const { user } = useUserAuth();
   let name;
   const [pref, setPref] = useState([]);
   const [articles, setArticles] = useState([]);
-  
+
 
   const colletionRef = collection(db, "User_News_Prefrences");
 
@@ -42,26 +42,26 @@ function UserNewsFeed() {
 
   useEffect(() => {
     const fetchData = async () => {
-  const userPreferences = pref.length > 0 ? pref[0].userPref : [];
+      const userPreferences = pref.length > 0 ? pref[0].userPref : [];
 
-  const promises = userPreferences.map(async (pref) => {
-    const lowerCasePref = pref.toLowerCase();
-    const url = `https://content.guardianapis.com/${lowerCasePref}?api-key=${apiKey}&show-fields=thumbnail&page-size=20`;
-    const response = await fetch(url);
-    const json = await response.json();
-    const results = json.response.results;
-    const resultsWithImages = results.filter((news) => news.fields && news.fields.thumbnail);
-    const firstTwelveResults = resultsWithImages.slice(0, 12);
-    return firstTwelveResults.map((article) => ({ ...article, sectionName: lowerCasePref }));
-  });
+      const promises = userPreferences.map(async (pref) => {
+        const lowerCasePref = pref.toLowerCase();
+        const url = `https://content.guardianapis.com/${lowerCasePref}?api-key=${apiKey}&show-fields=thumbnail&page-size=20`;
+        const response = await fetch(url);
+        const json = await response.json();
+        const results = json.response.results;
+        const resultsWithImages = results.filter((news) => news.fields && news.fields.thumbnail);
+        const firstTwelveResults = resultsWithImages.slice(0, 12);
+        return firstTwelveResults.map((article) => ({ ...article, sectionName: lowerCasePref }));
+      });
 
-  const results = await Promise.all(promises);
+      const results = await Promise.all(promises);
 
-  // the below flattens the array of arrays into single array of articles
-  // concatenates all sub-arrays into a single, one-dimensional array.
-  const articles = results.flat();
-  setArticles(articles);
-};
+      // the below flattens the array of arrays into single array of articles
+      // concatenates all sub-arrays into a single, one-dimensional array.
+      const articles = results.flat();
+      setArticles(articles);
+    };
 
     fetchData();
   }, [pref, apiKey]);
@@ -71,18 +71,22 @@ function UserNewsFeed() {
   return (
     <>
       <Header />
-      <Link to="/">Log Out</Link>
-      <h1>{name}'s News Feed</h1>
-      <ul>
-        News Preferences:
-        {userPreferences.map((d) => (
-          <li key={d}>{d}</li>
-        ))}
-      </ul>
+      <div className={styles.logOutContainer}>
+        <Link to="/" className={styles.logOutButton}>Log Out</Link>
+      </div>
+      <div className={styles.TitleAndPrefContainer}>
+        <h1 className={styles.NewsFeedTitle}>{name}'s News Feed</h1>
+        <h3 className={styles.NewsPrefTitle}>News Preferences:</h3>
+        <ul className={styles.NewsPrefList}>
+          {userPreferences.map((d) => (
+            <li key={d}>{d}</li>
+          ))}
+        </ul>
+      </div>
       <div className={styles.UserNewsContainer}>
-        <h2>{articles.length > 0 && articles[0].sectionName}</h2>
+        <h2 className={styles.articlesHeader}>{articles.length > 0 && articles[0].sectionName}</h2>
         <ListGroup>
-          <Row xs={1} sm={2} md={3} xl={4}>
+          <Row xs={2} sm={2} md={3} xl={4}>
             {articles.map((article) => (
               <Col key={article.id}>
                 <ListGroup.Item>
@@ -90,7 +94,7 @@ function UserNewsFeed() {
                     <Card.Img variant="top" src={article.fields.thumbnail} />
                     <Card.Body>
                       <Card.Title>{article.webTitle}</Card.Title>
-                      <Card.Text>{article.webPublicationDate}</Card.Text>
+                      <Card.Text>{article.webPublicationDate.replace('T', ' ').replace('Z', '')}</Card.Text>
                       <Card.Link href={article.webUrl}>Read more on Guardian</Card.Link>
                     </Card.Body>
                   </Card>
@@ -100,7 +104,7 @@ function UserNewsFeed() {
           </Row>
         </ListGroup>
       </div>
-    <Footer />
+      <Footer />
     </>
   );
 }
