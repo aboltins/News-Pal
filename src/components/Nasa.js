@@ -5,8 +5,7 @@ function Nasa() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY_NASA}`);
-      const result = await response.json();
+      const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY_NASA}`);      const result = await response.json();
       setData(result);
       console.log(result);
     };
@@ -17,9 +16,10 @@ function Nasa() {
     <div className={styles.main}>
       {data && (
         <>
-          <h1>{data.title}</h1>
-          <img src={data.url} alt={data.title} className={styles.small} />
-          
+          <h1 className={styles.astronomyPictureTitle}>Astronomy Picture of the Day</h1>
+          <h2 className={styles.nasaTitle}>{data.title}</h2>
+          <img src={data.url} alt={data.title} className={styles.nasaImage} />
+
         </>
       )}
     </div>

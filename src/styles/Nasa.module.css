@@ -1,31 +1,37 @@
-h1 {
-    color: rgb(123, 29, 29);
-    font-size: 15px;
-    font-weight: 600;
-    font-family: 'Recursive', sans-serif;
-    padding: 10px;
- 
+.main {
+  display: flex;
+  flex-direction: column;
 }
 
-.small {
-    max-width: 300px;
-    border-radius: 20px;
-    padding: 10px;
-  }
+.astronomyPictureTitle {
+  color: rgb(20, 19, 19);
+  text-align: center;
+  margin: 0px;
+}
 
+.nasaTitle {
+  color: rgb(123, 29, 29);
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Recursive', sans-serif;
+  align-self: center;
+  margin-top: 12px;
+}
 
+.nasaImage {
+  max-width: 320px;
+  border-radius: 20px;
+}
 
 /* Media Queries */
 
-@media screen and (min-width: 992px) and (max-width: 1199px) {
-    .small-image {
-        max-width: 280px;
-       
-      }
-
+@media (max-width: 1399px) {
+  .nasaImage {
+    max-width: 295px;
+  }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .main {
     display: none;
   }
