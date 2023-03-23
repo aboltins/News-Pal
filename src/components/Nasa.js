@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Nasa.module.css"
+// save key in configNasa for now, until process.env is resolved.
+import { apiKeyNasa } from '../config/configNasa.js';
+
 function Nasa() {
   const [data, setData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY_NASA}`);      const result = await response.json();
+      const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKeyNasa}`);      const result = await response.json();
       setData(result);
       console.log(result);
     };
