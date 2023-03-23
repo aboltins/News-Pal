@@ -21,6 +21,7 @@ import {
   where,
 } from "firebase/firestore";
 import db from "../config/Firebase";
+import unknowuser from "../styles/images/Unknown-user.jpg"
 
 const UserProfile = () => {
   const { user } = useUserAuth();
@@ -32,18 +33,10 @@ const UserProfile = () => {
   const [pref, setPref] = useState([]);
   const ref = useRef([]);
 
-  let photo;
+  let photo = user.photoURL;
   if (user.photoURL === null) {
-    photo =
-      "https://static.hudl.com/users/prod/5499830_8e273ea3a64448478f1bb0af5152a4c7.jpg";
-  } else {
-    photo = user.photoURL;
+    photo = unknowuser
   }
-
-  const auth = getAuth();
-  updateProfile(auth.currentUser, {
-    photoURL: photo,
-  });
 
   function removeItem(arr, value) {
     var index = arr.indexOf(value);
@@ -142,7 +135,7 @@ const UserProfile = () => {
           <Card className="col-lg-4 col-sm-12">
             <img
               src={photo}
-              style={{ width: "96px", height: "96px" }}
+              style={{ width: "96px", height: "96px", marginRight: 'auto', marginLeft: 'auto', borderRadius: '50%'}}
               alt="User's profile pic"
             ></img>
             Hello Welcome {name}
