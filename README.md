@@ -41,7 +41,7 @@ npm start
 
 ## Live Website
 
-The live website can be found here: <a href="https://verdant-arithmetic-0320b7.netlify.app/" target="_blank"> News Pal</a>
+The live website can be found here: <a href="https://newspal.netlify.app/" target="_blank"> News Pal</a>
 
 ### The live website looks like this:
 <br/>
