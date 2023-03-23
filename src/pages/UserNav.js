@@ -21,7 +21,7 @@ const UserNav = () => {
       if (items.length == 0) {
         return navigate("/userpreferences");
       } else {
-        return navigate("/userprofile");
+        return navigate("/usernewsfeed");
       }
     });
     return () => {

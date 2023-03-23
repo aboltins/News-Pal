@@ -21,6 +21,10 @@ import {
   where,
 } from "firebase/firestore";
 import db from "../config/Firebase";
+import unknowuser from "../styles/images/Unknown-user.jpg";
+import styles from "../styles/UserNewsFeed.module.css";
+import Header from "../components/Header_Prof_Feed";
+import Footer from "../components/Footer";
 
 const UserProfile = () => {
   const { user } = useUserAuth();
@@ -32,18 +36,10 @@ const UserProfile = () => {
   const [pref, setPref] = useState([]);
   const ref = useRef([]);
 
-  let photo;
+  let photo = user.photoURL;
   if (user.photoURL === null) {
-    photo =
-      "https://static.hudl.com/users/prod/5499830_8e273ea3a64448478f1bb0af5152a4c7.jpg";
-  } else {
-    photo = user.photoURL;
+    photo = unknowuser;
   }
-
-  const auth = getAuth();
-  updateProfile(auth.currentUser, {
-    photoURL: photo,
-  });
 
   function removeItem(arr, value) {
     var index = arr.indexOf(value);
@@ -136,18 +132,25 @@ const UserProfile = () => {
   };
 
   return (
-    <>
+    <section className={styles.height}>
+    <Header />
+      <div className={styles.logOutContainer}>
+        <Link to="/" className={styles.logOutButton}>
+          Log Out
+        </Link>
+      </div>
+      <div className={styles.display}>
       <Container>
         <Row>
-          <Card className="col-lg-4 col-sm-12">
+          <Card className={styles.card}>
             <img
               src={photo}
-              style={{ width: "96px", height: "96px" }}
+              className={styles.image}
               alt="User's profile pic"
             ></img>
-            Hello Welcome {name}
-            <ul>
-              News Preferences:
+            <p className={styles.text}>{name}'s Profile</p>
+            <ul className={styles.newsText}>
+              <p>News Preferences:</p>
               {test.map((d) => (
                 <li key={d}>{d}</li>
               ))}
@@ -155,7 +158,11 @@ const UserProfile = () => {
             <br />
           </Card>
           <div
-            className="col-lg-8 col-sm-12"
+            className="col-lg-1"
+          >
+          </div> 
+          <div
+            className="col-lg-7 col-sm-12"
             style={{
               border: "1px solid #dfdfdf",
               backgroundColor: "#fff",
@@ -205,8 +212,8 @@ const UserProfile = () => {
                   <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check
                       type="checkbox"
-                      name="World news"
-                      label="World news"
+                      name="World"
+                      label="World"
                       ref={(element) => {
                         ref.current[0] = element;
                       }}
@@ -238,8 +245,8 @@ const UserProfile = () => {
                     />
                     <Form.Check
                       type="checkbox"
-                      name="Environment"
-                      label="Environment"
+                      name="Football"
+                      label="Football"
                       ref={(element) => {
                         ref.current[3] = element;
                       }}
@@ -249,8 +256,8 @@ const UserProfile = () => {
                     />
                     <Form.Check
                       type="checkbox"
-                      name="Option 5"
-                      label="Option 5"
+                      name="Technology"
+                      label="Technology"
                       ref={(element) => {
                         ref.current[4] = element;
                       }}
@@ -275,8 +282,8 @@ const UserProfile = () => {
                     />
                     <Form.Check
                       type="checkbox"
-                      name="Option 7"
-                      label="Option 7"
+                      name="UK-News"
+                      label="UK-News"
                       ref={(element) => {
                         ref.current[6] = element;
                       }}
@@ -286,8 +293,8 @@ const UserProfile = () => {
                     />
                     <Form.Check
                       type="checkbox"
-                      name="Option 8"
-                      label="Option 8"
+                      name="US-News"
+                      label="US-News"
                       ref={(element) => {
                         ref.current[7] = element;
                       }}
@@ -297,8 +304,8 @@ const UserProfile = () => {
                     />
                     <Form.Check
                       type="checkbox"
-                      name="Option 9"
-                      label="Option 9"
+                      name="Business"
+                      label="Business"
                       ref={(element) => {
                         ref.current[8] = element;
                       }}
@@ -308,8 +315,8 @@ const UserProfile = () => {
                     />
                     <Form.Check
                       type="checkbox"
-                      name="Option 10"
-                      label="Option 10"
+                      name="Environment"
+                      label="Environment"
                       ref={(element) => {
                         ref.current[9] = element;
                       }}
@@ -329,8 +336,9 @@ const UserProfile = () => {
           </div>
         </Row>
       </Container>
-      <Link to="/">Log Out</Link>
-    </>
+      </div>
+      <Footer />
+    </section>
   );
 };
 

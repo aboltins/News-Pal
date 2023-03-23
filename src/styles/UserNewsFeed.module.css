@@ -77,12 +77,61 @@ li {
     font-size: 16px;
 }
 
+.image {
+    width: 96px;
+    height: 96px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 50%;
+    margin-top: 15px;
+}
+
+.text {
+    text-align: center;
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+.newsText {
+    text-align: center;
+    font-size: 16px;
+    padding-left: 0px;
+}
+
+.height {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #fafafa;
+}
+
+.display {
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.card {
+    margin-top: 1rem;
+    flex: 0 0 auto;
+    width: 33.33333333%;
+}
+
 /* Hides the h2 title for the first rendered pref. cards, once titles made for all pref. then will undo */
 .articlesHeader {
     display: none;
 }
 
 /* Media Queries */
+
+@media only screen and (max-width: 992px) {
+    .card {
+        margin-top: 0;
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}
 
 @media screen and (max-width: 767px) {
     .UserNewsContainer {

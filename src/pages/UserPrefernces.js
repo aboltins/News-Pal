@@ -141,8 +141,8 @@ export default function UserFirstTime() {
                   <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check
                       type="checkbox"
-                      name="World news"
-                      label="World news"
+                      name="World"
+                      label="World"
                       ref={(element) => {
                         ref.current[0] = element;
                       }}
@@ -174,8 +174,8 @@ export default function UserFirstTime() {
                     />
                     <Form.Check
                       type="checkbox"
-                      name="Environment"
-                      label="Environment"
+                      name="Football"
+                      label="Football"
                       ref={(element) => {
                         ref.current[3] = element;
                       }}
@@ -185,8 +185,8 @@ export default function UserFirstTime() {
                     />
                     <Form.Check
                       type="checkbox"
-                      name="Option 5"
-                      label="Option 5"
+                      name="Technology"
+                      label="Technology"
                       ref={(element) => {
                         ref.current[4] = element;
                       }}
@@ -211,8 +211,8 @@ export default function UserFirstTime() {
                     />
                     <Form.Check
                       type="checkbox"
-                      name="Option 7"
-                      label="Option 7"
+                      name="UK-News"
+                      label="UK-News"
                       ref={(element) => {
                         ref.current[6] = element;
                       }}
@@ -222,8 +222,8 @@ export default function UserFirstTime() {
                     />
                     <Form.Check
                       type="checkbox"
-                      name="Option 8"
-                      label="Option 8"
+                      name="US-News"
+                      label="US-News"
                       ref={(element) => {
                         ref.current[7] = element;
                       }}
@@ -233,8 +233,8 @@ export default function UserFirstTime() {
                     />
                     <Form.Check
                       type="checkbox"
-                      name="Option 9"
-                      label="Option 9"
+                      name="Business"
+                      label="Business"
                       ref={(element) => {
                         ref.current[8] = element;
                       }}
@@ -244,8 +244,8 @@ export default function UserFirstTime() {
                     />
                     <Form.Check
                       type="checkbox"
-                      name="Option 10"
-                      label="Option 10"
+                      name="Environment"
+                      label="Environment"
                       ref={(element) => {
                         ref.current[9] = element;
                       }}
