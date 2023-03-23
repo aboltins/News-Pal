@@ -7,8 +7,8 @@ import { Card, Col, ListGroup, Row } from "react-bootstrap";
 import styles from "../styles/UserNewsFeed.module.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-// enter key below for now, until process.env is resolved.
-const apiKey = '';
+// save key in configGuardian.js for now, until process.env is resolved.
+import { apiKeyGuardian } from '../config/configGuardian.js';
 
 function UserNewsFeed() {
   const { user } = useUserAuth();
@@ -46,7 +46,7 @@ function UserNewsFeed() {
 
       const promises = userPreferences.map(async (pref) => {
         const lowerCasePref = pref.toLowerCase();
-        const url = `https://content.guardianapis.com/${lowerCasePref}?api-key=${apiKey}&show-fields=thumbnail&page-size=20`;
+        const url = `https://content.guardianapis.com/${lowerCasePref}?api-key=${apiKeyGuardian}&show-fields=thumbnail&page-size=20`;
         const response = await fetch(url);
         const json = await response.json();
         const results = json.response.results;
@@ -64,7 +64,7 @@ function UserNewsFeed() {
     };
 
     fetchData();
-  }, [pref, apiKey]);
+  }, [pref, apiKeyGuardian]);
 
   const userPreferences = pref.length > 0 ? pref[0].userPref : [];
 

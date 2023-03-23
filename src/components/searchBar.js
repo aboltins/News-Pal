@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Card, ListGroup, Col, Row } from "react-bootstrap";
 import "../styles/SearchBar.css"
- // enter key below for now, until process.env is resolved.
-const API_KEY = ''
+// save key in configGuardian.js for now, until process.env is resolved.
+import { apiKeyGuardian } from '../config/configGuardian.js';
 
 const SearchBar = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -28,7 +28,7 @@ const SearchBar = () => {
   const fetchApiData = async () => {
     if (query !== "") {
       const response = await fetch(
-        `https://content.guardianapis.com/search?q=${query}&api-key=${API_KEY}&show-fields=thumbnail&page-size=8`
+        `https://content.guardianapis.com/search?q=${query}&api-key=${apiKeyGuardian}&show-fields=thumbnail&page-size=8`
       );
       const data = await response.json();
       setData(data.response.results);
